@@ -6,7 +6,7 @@
 #    By: gfranco <gfranco@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/10/09 13:44:17 by mverdier          #+#    #+#              #
-#    Updated: 2019/02/04 17:32:43 by gfranco          ###   ########.fr        #
+#    Updated: 2019/02/05 17:52:25 by gfranco          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,10 +30,7 @@ INCDIR =	./includes
 
 OBJDIR =	./objs
 
-SRC =		main.c draw.c event_colors.c event_rot1.c event_rot2.c	\
-			event_sounds.c event_zoom.c fill.c get_points_pos.c		\
-			init_rot.c key_display.c manipulate.c projection.c		\
-			rotate.c stock.c trace.c
+SRC =		main.c calcul_complex.c	put_color.c\
 
 INC =		fractol.h
 
