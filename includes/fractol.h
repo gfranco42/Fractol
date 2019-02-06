@@ -6,7 +6,7 @@
 /*   By: gfranco <gfranco@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/04 16:59:42 by gfranco           #+#    #+#             */
-/*   Updated: 2019/02/06 13:02:26 by gfranco          ###   ########.fr       */
+/*   Updated: 2019/02/06 13:50:56 by gfranco          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@
 
 # define WIDTH 2560
 # define HEIGHT 1400
-# define MAX_ITER 50
+# define MAX_ITER 200
 
 typedef struct	s_z
 {
@@ -37,6 +37,12 @@ typedef struct	s_c
 	double x;
 	double y;
 }				t_c;
+
+typedef struct	s_tmp
+{
+	double x;
+	double y;
+}				t_tmp;
 
 typedef struct	s_point
 {

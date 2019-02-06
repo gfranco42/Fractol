@@ -6,7 +6,7 @@
 /*   By: gfranco <gfranco@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/04 17:36:51 by gfranco           #+#    #+#             */
-/*   Updated: 2019/02/06 13:10:56 by gfranco          ###   ########.fr       */
+/*   Updated: 2019/02/06 13:51:03 by gfranco          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ int		main(void)
 	t_z		z;
 	t_point	point;
 	t_mlx	mlx;
+	t_tmp	tmp;
 	int		n;
 	double	module_z;
 	double		x1;
@@ -61,10 +62,12 @@ int		main(void)
 	point.x = 0;
 	point.y = 0;
 	n = 0;
-	z.x = -1;
-	z.y = 1;
+	z.x = 0.5;
+	z.y = 0.5;
 	c.x = -1;
 	c.y = 1;
+	tmp.x = 0;
+	tmp.y = 0;
 	module_z = calcul_module_z(z);
 	while (point.y < HEIGHT)
 	{
@@ -77,6 +80,8 @@ int		main(void)
 			while (module_z < 4 && n < MAX_ITER)
 			{
 				z = calcul_z(z, c);
+				tmp.x = z.x;
+				tmp.y = z.y;
 				n++;
 				module_z = calcul_module_z(z);
 			}
