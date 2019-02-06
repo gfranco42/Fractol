@@ -6,7 +6,7 @@
 /*   By: gfranco <gfranco@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/05 16:55:30 by gfranco           #+#    #+#             */
-/*   Updated: 2019/02/06 15:27:19 by gfranco          ###   ########.fr       */
+/*   Updated: 2019/02/06 16:34:58 by gfranco          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,11 @@ t_z			calcul_z(t_z z, t_c c)
 
 t_c			calcul_c(t_c c, int x, int y)
 {
-	c.x = x * (WIDTH - 1) / 2 - 1;
-	c.y = y * (HEIGHT - 1) / 2 - 1;
-	printf("x: %d, y: %d, c.x: %f, c.y: %f\n", x, y, c.x, c.y);
+	(void)x;
+	(void)y;
+	c.x = WIDTH / 2 / WIDTH;
+	c.y = HEIGHT / 2 / HEIGHT;
+//	printf("x: %d, y: %d, c.x: %f, c.y: %f\n", x, y, c.x, c.y);
 	return (c);
 }
 
@@ -34,6 +36,7 @@ double		calcul_module_z(t_z z)
 	int		x;
 	int		y;
 
+//	printf("x: %f |y: %f", z.x, z.y);
 	x = z.x * z.x;
 	y = z.y * z.y;
 	module = x + y;
