@@ -6,7 +6,7 @@
 /*   By: gfranco <gfranco@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/04 17:36:51 by gfranco           #+#    #+#             */
-/*   Updated: 2019/02/05 17:56:16 by gfranco          ###   ########.fr       */
+/*   Updated: 2019/02/06 13:10:56 by gfranco          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,10 @@ int		main(void)
 	t_mlx	mlx;
 	int		n;
 	double	module_z;
+	double		x1;
+	double		y1;
+	double		x2;
+	double		y2;
 
 	mlx.ptr = mlx_init();
 	mlx.win = mlx_new_window(mlx.ptr, WIDTH, HEIGHT, "FRACTOL GFRANCO");
@@ -50,23 +54,33 @@ int		main(void)
 
 	distance module_z = module de z;
 	module de z = sqrt(x2 + y2);              */
+	x1 = -2.1;
+	y1 = 0.6;
+	x2 = -1.2;
+	y2 = 1.2;
 	point.x = 0;
 	point.y = 0;
 	n = 0;
-	z.x = 0;
-	z.y = 0;
+	z.x = -1;
+	z.y = 1;
+	c.x = -1;
+	c.y = 1;
 	module_z = calcul_module_z(z);
 	while (point.y < HEIGHT)
 	{
 		while (point.x < WIDTH)
 		{
 			c = calcul_c(c, point.x, point.y);
+			//c.x = x1 + ((point.x + 0.0) * (x2 - x1)) / (WIDTH - 1.0);
+		//	c.y = y1 + ((point.y + 0.0) * (y2 - y1)) / (HEIGHT - 1.0);
+		//	c.y = y2 -c.y + y1;
 			while (module_z < 4 && n < MAX_ITER)
 			{
-				calcul_z(z, c);
+				z = calcul_z(z, c);
 				n++;
+				module_z = calcul_module_z(z);
 			}
-			if (module_z > 4)
+			if (n >= MAX_ITER)
 				put_color_black(point, n, mlx.str);
 			else
 				put_color_white(point, n, mlx.str);
@@ -75,6 +89,7 @@ int		main(void)
 	point.x = 0;
 	point.y++;
 	}
+	mlx_hook(mlx.win, KEYPRESS, KEYPRESSMASK, key, 0);
 	mlx_put_image_to_window(mlx.ptr, mlx.win, mlx.img, 0, 0);
 	mlx_loop(mlx.ptr);
 }

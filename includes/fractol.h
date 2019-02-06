@@ -6,7 +6,7 @@
 /*   By: gfranco <gfranco@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/04 16:59:42 by gfranco           #+#    #+#             */
-/*   Updated: 2019/02/05 17:51:21 by gfranco          ###   ########.fr       */
+/*   Updated: 2019/02/06 13:02:26 by gfranco          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@
 
 # define WIDTH 2560
 # define HEIGHT 1400
-# define MAX_ITER 200
+# define MAX_ITER 50
 
 typedef struct	s_z
 {
@@ -59,6 +59,7 @@ typedef struct	s_mlx
 t_z			calcul_z(t_z z, t_c c); /*		 Z + C /!\ pas au carré ! ! */
 t_c			calcul_c(t_c c, int x, int y); /*				 x * width / 2 - 1 && y * height / 2 - 1; */
 double		calcul_module_z(t_z z); /*		 x^2 + y^2 */
+int			key(int key, void *param);
 void		put_color_black(t_point point, int n, char	*str);
 void		put_color_white(t_point point, int n, char	*str);
 
