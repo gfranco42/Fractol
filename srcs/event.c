@@ -6,13 +6,13 @@
 /*   By: gfranco <gfranco@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/06 10:58:07 by gfranco           #+#    #+#             */
-/*   Updated: 2019/02/07 17:55:05 by gfranco          ###   ########.fr       */
+/*   Updated: 2019/02/07 17:55:48 by gfranco          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fractol.h"
 
-int		zoom(int key, void *param)
+/*int		zoom(int key, void *param)
 {
 	t_all	*all;
 
@@ -40,7 +40,7 @@ int		zoom(int key, void *param)
 
 	return (0);
 }
-
+*/
 int		key(int key, void *param)
 {
 	t_all	*all;
@@ -48,8 +48,8 @@ int		key(int key, void *param)
 	all = (t_all*)param;
 	if (key == 53)
 		exit(0);
-	else if (key == 69 || key == 78)
-		zoom(key, param);
+/*	else if (key == 69 || key == 78)
+		zoom(key, param);*/
 	ft_putnbr(key);
 	ft_putchar('|');
 	return (0);
