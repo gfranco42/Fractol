@@ -6,7 +6,7 @@
 #    By: gfranco <gfranco@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/10/09 13:44:17 by mverdier          #+#    #+#              #
-#    Updated: 2019/02/06 11:01:33 by gfranco          ###   ########.fr        #
+#    Updated: 2019/02/07 16:43:18 by gfranco          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,7 +30,7 @@ INCDIR =	./includes
 
 OBJDIR =	./objs
 
-SRC =		main.c calcul_complex.c	put_color.c event.c \
+SRC =		main.c calcul_complex.c	put_color.c event.c mandelbrot.c \
 
 INC =		fractol.h
 

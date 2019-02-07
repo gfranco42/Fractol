@@ -6,7 +6,7 @@
 /*   By: gfranco <gfranco@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/04 16:59:42 by gfranco           #+#    #+#             */
-/*   Updated: 2019/02/06 18:03:18 by gfranco          ###   ########.fr       */
+/*   Updated: 2019/02/07 17:54:26 by gfranco          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,11 @@
 # include "macros.h"
 # include <math.h>
 
-# define WIDTH 2560
-# define HEIGHT 1400
+# define WIDTH 500
+# define HEIGHT 500
 # define MAX_ITER 255
 
-typedef struct	s_z
+/*typedef struct	s_z
 {
 	double x;
 	double y;
@@ -44,11 +44,31 @@ typedef struct	s_tmp
 	double y;
 }				t_tmp;
 
+typedef struct s_event_move
+{
+	double	x;
+	double	y;
+}				t_event_move;*/
+
 typedef struct	s_point
 {
 	int		x;
 	int		y;
 }				t_point;
+
+typedef struct	s_cplx
+{
+	double	x;
+	double	y;
+}				t_cplx;
+
+typedef struct	s_pos
+{
+	double	x1;
+	double	y1;
+	double	x2;
+	double	y2;
+}				t_pos;
 
 typedef struct	s_mlx
 {
@@ -61,12 +81,23 @@ typedef struct	s_mlx
 	int		endian;
 }				t_mlx;
 
+typedef struct	s_all
+{
+	t_cplx		z;
+	t_cplx		c;
+	t_cplx		tmp;
+	t_cplx		*event_z;
+	t_point		point;
+	t_pos		p;
+	t_mlx		mlx;
+}				t_all;
 
-t_z			calcul_z(t_z z, t_c c); /*		 Z + C /!\ pas au carré ! ! */
-t_c			calcul_c(t_c c, int x, int y); /*				 x * width / 2 - 1 && y * height / 2 - 1; */
-double		calcul_module_z(t_z z); /*		 x^2 + y^2 */
-int			key(int key, void *param);
-void		put_color_inside(t_point point, int n, char	*str, int degrade);
-void		put_color_outside(t_point point, int n, char *str, int degrade);
+t_cplx			calcul_z(t_cplx z, t_cplx c, t_cplx tmp); /* Z + C /!\ pas au carré ! ! */
+t_cplx			calcul_c(t_cplx c, t_point point, t_pos p, t_cplx event_m); /* x * width / 2 - 1 && y * height / 2 - 1; */
+double			calcul_module_z(t_cplx z); /*		 x^2 + y^2 */
+int				key(int key, void *param);
+void			mandelbrot(t_all all);
+void			put_color_inside(t_point point, int n, char	*str, int degrade);
+void			put_color_outside(t_point point, int n, char *str, int degrade);
 
 #endif
