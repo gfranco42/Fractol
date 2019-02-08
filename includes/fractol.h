@@ -6,7 +6,7 @@
 /*   By: gfranco <gfranco@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/04 16:59:42 by gfranco           #+#    #+#             */
-/*   Updated: 2019/02/07 17:54:26 by gfranco          ###   ########.fr       */
+/*   Updated: 2019/02/08 16:00:13 by gfranco          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,9 @@
 # include "macros.h"
 # include <math.h>
 
-# define WIDTH 500
-# define HEIGHT 500
-# define MAX_ITER 255
+# define WIDTH 640
+# define HEIGHT 350
+# define MAX_ITER 100
 
 /*typedef struct	s_z
 {
@@ -88,7 +88,7 @@ typedef struct	s_all
 	t_cplx		tmp;
 	t_cplx		*event_z;
 	t_point		point;
-	t_pos		p;
+	t_pos		*p;
 	t_mlx		mlx;
 }				t_all;
 
@@ -97,7 +97,7 @@ t_cplx			calcul_c(t_cplx c, t_point point, t_pos p, t_cplx event_m); /* x * widt
 double			calcul_module_z(t_cplx z); /*		 x^2 + y^2 */
 int				key(int key, void *param);
 void			mandelbrot(t_all all);
-void			put_color_inside(t_point point, int n, char	*str, int degrade);
-void			put_color_outside(t_point point, int n, char *str, int degrade);
+void			put_color_inside(t_point point, int n, char	*str, t_mlx mlx);
+void			put_color_outside(t_point point, int n, char *str, t_mlx mlx);
 
 #endif
