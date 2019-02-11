@@ -6,7 +6,7 @@
 /*   By: gfranco <gfranco@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/06 10:58:07 by gfranco           #+#    #+#             */
-/*   Updated: 2019/02/08 16:00:49 by gfranco          ###   ########.fr       */
+/*   Updated: 2019/02/11 14:01:26 by gfranco          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int		zoom(int key, void *param)
 		all->p->y2 *= 0.9;
 		ft_memset(all->mlx.str, 0, HEIGHT * WIDTH * 4);
 		mlx_put_image_to_window(all->mlx.ptr, all->mlx.win, all->mlx.img, 0, 0);
-		mandelbrot(*all);
+		mandelbrot(all->p);
 		mlx_put_image_to_window(all->mlx.ptr, all->mlx.win, all->mlx.img, 0, 0);
 	}
 
@@ -38,7 +38,7 @@ int		zoom(int key, void *param)
 		all->p->y2 *= 1.1;
 		ft_memset(all->mlx.str, 0, HEIGHT * WIDTH * 4);
 		mlx_put_image_to_window(all->mlx.ptr, all->mlx.win, all->mlx.img, 0, 0);
-		mandelbrot(*all);
+		mandelbrot(all->p);
 		mlx_put_image_to_window(all->mlx.ptr, all->mlx.win, all->mlx.img, 0, 0);
 	}
 

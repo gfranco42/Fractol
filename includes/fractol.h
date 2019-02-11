@@ -6,7 +6,7 @@
 /*   By: gfranco <gfranco@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/04 16:59:42 by gfranco           #+#    #+#             */
-/*   Updated: 2019/02/08 16:00:13 by gfranco          ###   ########.fr       */
+/*   Updated: 2019/02/11 14:13:44 by gfranco          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,33 +21,40 @@
 # include "../libft/libft.h"
 # include "macros.h"
 # include <math.h>
+# include <pthread.h>
 
 # define WIDTH 640
 # define HEIGHT 350
 # define MAX_ITER 100
 
+/*typedef struct	s_thread
+{
+	pthread_t	mandelbrot;
+}				t_thread;*/
+
+
 /*typedef struct	s_z
 {
-	double x;
-	double y;
+	float x;
+	float y;
 }				t_z;
 
 typedef struct	s_c
 {
-	double x;
-	double y;
+	float x;
+	float y;
 }				t_c;
 
 typedef struct	s_tmp
 {
-	double x;
-	double y;
+	float x;
+	float y;
 }				t_tmp;
 
 typedef struct s_event_move
 {
-	double	x;
-	double	y;
+	float	x;
+	float	y;
 }				t_event_move;*/
 
 typedef struct	s_point
@@ -58,16 +65,16 @@ typedef struct	s_point
 
 typedef struct	s_cplx
 {
-	double	x;
-	double	y;
+	float	x;
+	float	y;
 }				t_cplx;
 
 typedef struct	s_pos
 {
-	double	x1;
-	double	y1;
-	double	x2;
-	double	y2;
+	float	x1;
+	float	y1;
+	float	x2;
+	float	y2;
 }				t_pos;
 
 typedef struct	s_mlx
@@ -94,7 +101,7 @@ typedef struct	s_all
 
 t_cplx			calcul_z(t_cplx z, t_cplx c, t_cplx tmp); /* Z + C /!\ pas au carré ! ! */
 t_cplx			calcul_c(t_cplx c, t_point point, t_pos p, t_cplx event_m); /* x * width / 2 - 1 && y * height / 2 - 1; */
-double			calcul_module_z(t_cplx z); /*		 x^2 + y^2 */
+float			calcul_module_z(t_cplx z); /*		 x^2 + y^2 */
 int				key(int key, void *param);
 void			mandelbrot(t_all all);
 void			put_color_inside(t_point point, int n, char	*str, t_mlx mlx);

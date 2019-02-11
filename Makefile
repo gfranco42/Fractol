@@ -6,7 +6,7 @@
 #    By: gfranco <gfranco@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/10/09 13:44:17 by mverdier          #+#    #+#              #
-#    Updated: 2019/02/07 16:43:18 by gfranco          ###   ########.fr        #
+#    Updated: 2019/02/11 11:00:28 by gfranco          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,7 +30,7 @@ INCDIR =	./includes
 
 OBJDIR =	./objs
 
-SRC =		main.c calcul_complex.c	put_color.c event.c mandelbrot.c \
+SRC =		main.c calcul_complex.c	put_color.c event.c mandelbrot.c mthread.c \
 
 INC =		fractol.h
 
@@ -62,7 +62,8 @@ INCFLAGS =	-I $(INCDIR)			\
 			-I /usr/local/include
 
 LFLAGS =	-L $(LIBDIR) -l$(LIBNAME:lib%.a=%)	\
-			-L /usr/local/lib -lmlx -framework OpenGL -framework AppKit
+			-L /usr/local/lib -lmlx -framework OpenGL -framework AppKit	\
+			-lpthread
 
 FLAGS =		$(CFLAGS)		\
 			$(INCFLAGS)
