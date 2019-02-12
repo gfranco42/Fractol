@@ -6,7 +6,7 @@
 /*   By: gfranco <gfranco@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/04 17:36:51 by gfranco           #+#    #+#             */
-/*   Updated: 2019/02/11 14:13:10 by gfranco          ###   ########.fr       */
+/*   Updated: 2019/02/12 17:33:36 by gfranco          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,6 @@ int		main(void)
 	t_all		all;
 	t_pos		p;
 	t_cplx		event_z;
-	pthread_t	th;
-	int			ret;
 
 	all.mlx.ptr = mlx_init();
 	all.mlx.win = mlx_new_window(all.mlx.ptr, WIDTH, HEIGHT, "FRACTOL GFRANCO");
@@ -37,19 +35,9 @@ int		main(void)
 	all.p->y2 = 1;
 	all.event_z->x = 0;
 	all.event_z->y = 0;
-	ret = pthread_create(&th, NULL, (void*)mandelbrot, &all;
-	if (ret != 0)
-	{
-		write(1, "CREATE FAIL\n", 12);
-		exit(0);
-	}
-	ret = pthread_join(th, NULL);// result after this function
-	if (ret != 0)
-	{
-		write(1, "JOIN FAIL\n", 10);
-		exit(0);
-	}
-//	mandelbrot(all);
+	all.img_x = 320;
+	all.img_y = 175;
+	mandelbrot(all);
 	mlx_hook(all.mlx.win, KEYPRESS, KEYPRESSMASK, key, &all);
 	mlx_put_image_to_window(all.mlx.ptr, all.mlx.win, all.mlx.img, 0, 0);
 	mlx_loop(all.mlx.ptr);

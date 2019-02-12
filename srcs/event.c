@@ -6,7 +6,7 @@
 /*   By: gfranco <gfranco@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/06 10:58:07 by gfranco           #+#    #+#             */
-/*   Updated: 2019/02/11 14:01:26 by gfranco          ###   ########.fr       */
+/*   Updated: 2019/02/12 17:33:15 by gfranco          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,25 +20,27 @@ int		zoom(int key, void *param)
 
 	if (key == 69) // +
 	{
-		all->p->x1 *= 0.9;
-		all->p->x2 *= 0.9;
-		all->p->y1 *= 0.9;
-		all->p->y2 *= 0.9;
+		all->img_x *= 1.1;
+		all->img_y *= 1.1;
+		/*all->p->y1 *= 0.9;
+		all->p->y2 *= 0.9;*/
 		ft_memset(all->mlx.str, 0, HEIGHT * WIDTH * 4);
 		mlx_put_image_to_window(all->mlx.ptr, all->mlx.win, all->mlx.img, 0, 0);
-		mandelbrot(all->p);
+		mandelbrot(*all);
 		mlx_put_image_to_window(all->mlx.ptr, all->mlx.win, all->mlx.img, 0, 0);
 	}
 
 	else if (key == 78)// -
 	{
-		all->p->x1 *= 1.1;
+		all->img_x *= 0.9;
+		all->img_y *= 0.9;
+	/*	all->p->x1 *= 1.1;
 		all->p->x2 *= 1.1;
 		all->p->y1 *= 1.1;
-		all->p->y2 *= 1.1;
+		all->p->y2 *= 1.1;*/
 		ft_memset(all->mlx.str, 0, HEIGHT * WIDTH * 4);
 		mlx_put_image_to_window(all->mlx.ptr, all->mlx.win, all->mlx.img, 0, 0);
-		mandelbrot(all->p);
+		mandelbrot(*all);
 		mlx_put_image_to_window(all->mlx.ptr, all->mlx.win, all->mlx.img, 0, 0);
 	}
 
