@@ -6,7 +6,7 @@
 /*   By: gfranco <gfranco@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/04 16:59:42 by gfranco           #+#    #+#             */
-/*   Updated: 2019/02/12 17:25:01 by gfranco          ###   ########.fr       */
+/*   Updated: 2019/02/20 16:06:21 by gfranco          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,26 +35,26 @@
 
 /*typedef struct	s_z
 {
-	float x;
-	float y;
+	double x;
+	double y;
 }				t_z;
 
 typedef struct	s_c
 {
-	float x;
-	float y;
+	double x;
+	double y;
 }				t_c;
 
 typedef struct	s_tmp
 {
-	float x;
-	float y;
+	double x;
+	double y;
 }				t_tmp;
 
 typedef struct s_event_move
 {
-	float	x;
-	float	y;
+	double	x;
+	double	y;
 }				t_event_move;*/
 
 typedef struct	s_point
@@ -65,16 +65,16 @@ typedef struct	s_point
 
 typedef struct	s_cplx
 {
-	float	x;
-	float	y;
+	double	x;
+	double	y;
 }				t_cplx;
 
 typedef struct	s_pos
 {
-	float	x1;
-	float	y1;
-	float	x2;
-	float	y2;
+	double	x1;
+	double	y1;
+	double	x2;
+	double	y2;
 }				t_pos;
 
 typedef struct	s_mlx
@@ -90,24 +90,25 @@ typedef struct	s_mlx
 
 typedef struct	s_all
 {
-	float		img_x;
-	float		img_y;
-	float		zoom;
+	double		zoom;
 	t_cplx		z;
 	t_cplx		c;
 	t_cplx		tmp;
 	t_cplx		*event_z;
 	t_point		point;
 	t_pos		*p;
+	t_pos		*d;
+	t_pos		*new;
 	t_mlx		mlx;
 }				t_all;
 
-t_cplx			calcul_z(t_cplx z, t_cplx c, t_cplx tmp); /* Z + C /!\ pas au carré ! ! */
-t_cplx			calcul_c(t_cplx c, t_point point, t_pos p, t_cplx event_m); /* x * width / 2 - 1 && y * height / 2 - 1; */
-float			calcul_module_z(t_cplx z); /*		 x^2 + y^2 */
+t_cplx			calcul_z(t_cplx z, t_cplx c, t_cplx tmp);
+t_cplx			calcul_c(t_cplx c, t_point point, t_pos p);
+double			calcul_module_z(t_cplx z);
 int				key(int key, void *param);
 void			mandelbrot(t_all all);
+int				mouse(int key, int x, int y, void *param);
 void			put_color_inside(t_point point, int n, unsigned int *str, t_mlx mlx);
 void			put_color_outside(t_point point, int n, char *str, t_mlx mlx);
-
+void			zoom_on_mouse(int x, int y, t_all *all);
 #endif
