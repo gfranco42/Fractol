@@ -6,7 +6,7 @@
 /*   By: gfranco <gfranco@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/04 16:59:42 by gfranco           #+#    #+#             */
-/*   Updated: 2019/02/20 16:06:21 by gfranco          ###   ########.fr       */
+/*   Updated: 2019/03/01 17:00:13 by gfranco          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,8 +105,13 @@ typedef struct	s_all
 t_cplx			calcul_z(t_cplx z, t_cplx c, t_cplx tmp);
 t_cplx			calcul_c(t_cplx c, t_point point, t_pos p);
 double			calcul_module_z(t_cplx z);
+void			fail(int i);
+void			*julia(void *param);
 int				key(int key, void *param);
-void			mandelbrot(t_all all);
+void			*mandelbrot(void *param);
+void			*mandelbrot2(void *param);
+void			*mandelbrot3(void *param);
+void			*mandelbrot4(void *param);
 int				mouse(int key, int x, int y, void *param);
 void			put_color_inside(t_point point, int n, unsigned int *str, t_mlx mlx);
 void			put_color_outside(t_point point, int n, char *str, t_mlx mlx);
