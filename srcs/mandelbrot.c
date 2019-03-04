@@ -6,7 +6,7 @@
 /*   By: gfranco <gfranco@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/07 15:40:30 by gfranco           #+#    #+#             */
-/*   Updated: 2019/03/01 17:53:33 by gfranco          ###   ########.fr       */
+/*   Updated: 2019/03/04 11:33:10 by gfranco          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void		*mandelbrot(void *param)
 				all->z = calcul_z(all->z, all->c, all->tmp);
 				n++;
 			}
-			if (n == MAX_ITER)
+			if (n != MAX_ITER)
 			{
 				put_color_outside(all->point, n, all->mlx.str, all->mlx);
 			}
