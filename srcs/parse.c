@@ -1,23 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   put_color.c                                        :+:      :+:    :+:   */
+/*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gfranco <gfranco@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/02/05 17:04:36 by gfranco           #+#    #+#             */
-/*   Updated: 2019/03/04 16:48:16 by gfranco          ###   ########.fr       */
+/*   Created: 2019/03/05 16:38:06 by gfranco           #+#    #+#             */
+/*   Updated: 2019/03/05 16:40:37 by gfranco          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fractol.h"
 
-void		put_color_inside(t_point point, int n, unsigned int *str)
+void	parsing(char str, t_all all)
 {
-	str[point.y * WIDTH + point.x] = 0 / n;
-}
-
-void		put_color_outside(t_point point, int n, unsigned int *str)
-{
-	str[point.y * WIDTH + point.x] = 0x01DF3A / n;
+	if (ft_strcmp("Julia", str) == 0)
+		julia(all);
+	if (ft_strcmp("Mandelbrot", str) == 0)
+		mandelbrot(all);
+	if (ft_strcmp("galaxy", str) == 0)
+		galaxy(all);
 }

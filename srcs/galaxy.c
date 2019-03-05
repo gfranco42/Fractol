@@ -1,50 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   julia.c                                            :+:      :+:    :+:   */
+/*   galaxy.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gfranco <gfranco@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/03/01 16:49:34 by gfranco           #+#    #+#             */
-/*   Updated: 2019/03/05 15:47:18 by gfranco          ###   ########.fr       */
+/*   Created: 2019/02/07 15:40:30 by gfranco           #+#    #+#             */
+/*   Updated: 2019/03/05 15:46:44 by gfranco          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fractol.h"
 
-void		set_plan(t_pos *pos, int plan)
+void		*galaxy_th(void *param)
 {
-	if (plan == 1)
-	{
-		pos->x1 = -2.1;
-		pos->x2 = 0.6;
-		pos->y1 = -1.2;
-		pos->y2 = 1.2;
-	}
-	else if (plan == 2)
-	{
-		pos->x1 = -1.1;
-		pos->x2 = 1;
-		pos->y1 = -1.2;
-		pos->y2 = 1.2;
-	}
-	else if (plan == 3)
-	{
-		pos->x1 = -1;
-		pos->x2 = 1;
-		pos->y1 = -1.5;
-		pos->y2 = 1.5;
-	}
+	t_all	*all;
+
+	all = (t_all*)param;
+	return NULL;
 }
 
-void		julia(t_all all)
+void		galaxy(t_all all)
 {
 	int		n;
 
 	n = 1;
-	if (*all.plan != 2)
-		set_plan(all.p, 2);
-	*all.plan = 2;
+	if (*all.plan != 3)
+		set_plan(all.p, 3);
+	*all.plan = 3;
+	all.c.x = 0.5898;
+	all.c.y = 1.1957;
 	while (all.point.y < HEIGHT)
 	{
 		while (all.point.x < WIDTH)
@@ -55,7 +40,7 @@ void		julia(t_all all)
 			n = 1;
 			while (all.z.x * all.z.x + all.z.y * all.z.y < 4 && n < MAX_ITER)
 			{
-				all.z = calcul_z(all.z, all.c, all.tmp);
+				all.z = calcul_z_galaxy(all.z, all.c, all.tmp);
 				n++;
 			}
 			if (n == MAX_ITER)
