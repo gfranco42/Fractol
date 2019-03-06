@@ -6,63 +6,27 @@
 /*   By: gfranco <gfranco@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/04 17:36:51 by gfranco           #+#    #+#             */
-/*   Updated: 2019/03/05 14:54:08 by gfranco          ###   ########.fr       */
+/*   Updated: 2019/03/06 14:10:32 by gfranco          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fractol.h"
 
-void	init_mandel(t_all *all)
-{
-	t_pos		p;
-	t_pos		d;
-	t_pos		new;
-
-	all->point.x = 0;
-	all->point.y = 0;
-	all->tmp.x = 0;
-	all->tmp.y = 0;
-	all->p = &p;
-	all->d = &d;
-	all->new = &new;
-	*all->plan = 1;
-	all->zoom = 1;
-}
-
-void	init_julia(t_all *all)
-{
-	t_pos		p;
-	t_pos		d;
-	t_pos		new;
-
-	all->point.x = 0;
-	all->point.y = 0;
-	all->tmp.x = 0;
-	all->tmp.y = 0;
-	all->p = &p;
-	all->d = &d;
-	all->new = &new;
-	all->c.x = 0.3;
-	all->c.y = 0.3;
-	*all->plan = 2;
-	all->zoom = 1;
-}
-
 void		fail(int i)
 {
 	if (i == 1)
 	{
-		write(1, "FAIL TO CREATE FIRST THREAD\n", 28);
+		write(1, "FAIL TO CREATE THREAD\n", 22);
 		exit(0);
 	}
 	else if (i == 2)
 	{
-		write(1, "FAIL TO JOIN FIRST THREAD\n", 26);
+		write(1, "FAIL TO JOIN THREAD\n", 20);
 		exit(0);
 	}
 }
 
-int		main(void)
+int		main(int ac, char **av)
 {
 	t_all		all;
 	t_pos		p;
@@ -81,17 +45,20 @@ int		main(void)
 	all.p = &p;
 	all.d = &d;
 	all.new = &new;
-	*all.plan = 1;
+	*all.plan = -1;
 	all.zoom = 1;
 
 	all.c.x = 0.3;
 	all.c.y = 0.3;
-	julia(all);
-//	mandelbrot(all);
-
+	if (ac != 2)
+	{
+		write(1, "usage:\n./fractol  Mandelbrot\n\t   Julia\n\t   Galaxy\n",
+		 50);
+		exit(0);
+	}
+	parsing(av[1], all);
 	mlx_hook(all.mlx.win, KEYPRESS, KEYPRESSMASK, key, &all);
 	mlx_hook(all.mlx.win, 6, 0, mouse_julia, &all);
-	//mlx_hook(all.mlx.win, BUTTONPRESS, BUTTONPRESSMASK, mouse_julia, &all);
 	mlx_mouse_hook(all.mlx.win, mouse, &all);
 	mlx_put_image_to_window(all.mlx.ptr, all.mlx.win, all.mlx.img, 0, 0);
 	mlx_loop(all.mlx.ptr);

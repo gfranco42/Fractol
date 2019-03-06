@@ -6,50 +6,45 @@
 /*   By: gfranco <gfranco@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/07 15:40:30 by gfranco           #+#    #+#             */
-/*   Updated: 2019/03/05 15:46:44 by gfranco          ###   ########.fr       */
+/*   Updated: 2019/03/06 18:45:37 by gfranco          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fractol.h"
 
-void		*galaxy_th(void *param)
+void		calcul_first_z_galaxy(t_point *point, t_cplx *z, t_pos *p)
 {
-	t_all	*all;
-
-	all = (t_all*)param;
-	return NULL;
+	 z->x = p->x1 + point->x * (p->x2 - p->x1) / WIDTH;
+	 z->y = p->y1 + point->y * (p->y2 - p->y1) / HEIGHT;
+	 z->y = p->y2 - z->y + p->y1;
 }
 
 void		galaxy(t_all all)
 {
-	int		n;
+	pthread_t	th[4];
+	t_all		all_th[4];
+	int			i;
 
-	n = 1;
+	i = -1;
+	while (++i < 4)
+		all_th[i] = all;
 	if (*all.plan != 3)
 		set_plan(all.p, 3);
 	*all.plan = 3;
-	all.c.x = 0.5898;
-	all.c.y = 1.1957;
-	while (all.point.y < HEIGHT)
+	while (--i > -1)
 	{
-		while (all.point.x < WIDTH)
-		{
-			all.z.x = all.p->x1 + all.point.x * (all.p->x2 - all.p->x1) / WIDTH;
-			all.z.y = all.p->y1 + all.point.y * (all.p->y2 - all.p->y1) / HEIGHT;
-			all.z.y = all.p->y2 - all.z.y + all.p->y1;
-			n = 1;
-			while (all.z.x * all.z.x + all.z.y * all.z.y < 4 && n < MAX_ITER)
-			{
-				all.z = calcul_z_galaxy(all.z, all.c, all.tmp);
-				n++;
-			}
-			if (n == MAX_ITER)
-				put_color_inside(all.point, n, (unsigned int*)all.mlx.str);
-			else
-				put_color_outside(all.point, n, (unsigned int*)all.mlx.str);
-			all.point.x++;
-		}
-		all.point.x = 0;
-		all.point.y++;
+		all_th[i].c.x = 0.5898;
+		all_th[i].c.y = 1.1957;
 	}
+	if ((pthread_create(&th[0], NULL, galaxy_th1, &all_th[0])))
+		fail(1);
+	if ((pthread_create(&th[1], NULL, galaxy_th2, &all_th[1])))
+		fail(1);
+	if ((pthread_create(&th[2], NULL, galaxy_th3, &all_th[2])))
+		fail(1);
+	if ((pthread_create(&th[3], NULL, galaxy_th4, &all_th[3])))
+		fail(1);
+	while (++i < 4)
+	if ((pthread_join(th[i], NULL)))
+		fail(2);
 }

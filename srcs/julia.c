@@ -6,7 +6,7 @@
 /*   By: gfranco <gfranco@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/01 16:49:34 by gfranco           #+#    #+#             */
-/*   Updated: 2019/03/05 15:47:18 by gfranco          ###   ########.fr       */
+/*   Updated: 2019/03/06 13:52:55 by gfranco          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ void		set_plan(t_pos *pos, int plan)
 		pos->x2 = 1;
 		pos->y1 = -1.2;
 		pos->y2 = 1.2;
+
 	}
 	else if (plan == 3)
 	{
@@ -53,11 +54,8 @@ void		julia(t_all all)
 			all.z.y = all.p->y1 + all.point.y * (all.p->y2 - all.p->y1) / HEIGHT;
 			all.z.y = all.p->y2 - all.z.y + all.p->y1;
 			n = 1;
-			while (all.z.x * all.z.x + all.z.y * all.z.y < 4 && n < MAX_ITER)
-			{
+			while (all.z.x * all.z.x + all.z.y * all.z.y < 4 && n++ < MAX_ITER)
 				all.z = calcul_z(all.z, all.c, all.tmp);
-				n++;
-			}
 			if (n == MAX_ITER)
 				put_color_inside(all.point, n, (unsigned int*)all.mlx.str);
 			else

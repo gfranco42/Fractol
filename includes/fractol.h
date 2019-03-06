@@ -6,7 +6,7 @@
 /*   By: gfranco <gfranco@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/04 16:59:42 by gfranco           #+#    #+#             */
-/*   Updated: 2019/03/05 15:42:42 by gfranco          ###   ########.fr       */
+/*   Updated: 2019/03/06 18:45:22 by gfranco          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,37 +25,7 @@
 
 # define WIDTH 640
 # define HEIGHT 569
-# define MAX_ITER 50
-
-/*typedef struct	s_thread
-{
-	pthread_t	mandelbrot;
-}				t_thread;*/
-
-
-/*typedef struct	s_z
-{
-	double x;
-	double y;
-}				t_z;
-
-typedef struct	s_c
-{
-	double x;
-	double y;
-}				t_c;
-
-typedef struct	s_tmp
-{
-	double x;
-	double y;
-}				t_tmp;
-
-typedef struct s_event_move
-{
-	double	x;
-	double	y;
-}				t_event_move;*/
+# define MAX_ITER 3000
 
 typedef struct	s_point
 {
@@ -92,7 +62,8 @@ typedef struct	s_all
 {
 	double		zoom;
 	int			*plan;
-	int			k;
+	char		clic;
+	char		check_zoom;
 	t_cplx		z;
 	t_cplx		c;
 	t_cplx		tmp;
@@ -105,16 +76,22 @@ typedef struct	s_all
 }				t_all;
 
 t_cplx			calcul_c(t_cplx c, t_point point, t_pos p);
+void			calcul_first_z_galaxy(t_point *point, t_cplx *z, t_pos *p);
 t_cplx			calcul_z(t_cplx z, t_cplx c, t_cplx tmp);
 t_cplx			calcul_z_galaxy(t_cplx z, t_cplx c, t_cplx tmp);
 double			calcul_module_z(t_cplx z);
 void			fail(int i);
 void			galaxy(t_all all);
+void			*galaxy_th1(void *param);
+void			*galaxy_th2(void *param);
+void			*galaxy_th3(void *param);
+void			*galaxy_th4(void *param);
 void			julia(t_all all);
 int				key(int key, void *param);
 void			mandelbrot(t_all all);
 int				mouse(int key, int x, int y, void *param);
 int				mouse_julia(int x, int y, void *param);
+void			parsing(char *str, t_all all);
 void			put_color_inside(t_point point, int n, unsigned int *str);
 void			put_color_outside(t_point point, int n, unsigned int *str);
 void			set_plan(t_pos *pos, int i);
