@@ -6,7 +6,7 @@
 /*   By: gfranco <gfranco@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/06 10:58:07 by gfranco           #+#    #+#             */
-/*   Updated: 2019/03/06 13:59:45 by gfranco          ###   ########.fr       */
+/*   Updated: 2019/03/07 18:09:24 by gfranco          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,8 +66,8 @@ int		mouse_julia(int x, int y, void *param)
 	{
 		ft_memset(all->mlx.str, 0, HEIGHT * WIDTH * 4);
 		mlx_put_image_to_window(all->mlx.ptr, all->mlx.win, all->mlx.img, 0, 0);
-		all->c.x = (all->p->x2 - all->p->x1) * x / WIDTH + all->p->x1;
-		all->c.y = (all->p->y2 - all->p->y1) * (HEIGHT - y) / HEIGHT + all->p->y1;
+		all->yolo1 = (all->p->x2 - all->p->x1) * x / WIDTH + all->p->x1;
+		all->yolo2 = (all->p->y2 - all->p->y1) * (HEIGHT - y) / HEIGHT + all->p->y1;
 		julia(*all);
 		mlx_put_image_to_window(all->mlx.ptr, all->mlx.win, all->mlx.img, 0, 0);
 	}
@@ -82,7 +82,7 @@ int		mouse(int key, int x, int y, void *param)
 	if (key == 4)
 	{
 		if (all->check_zoom == '-')
-			all->zoom = 1.0101010101;// parce que 1.0101010101 * 0.99 = 1
+			all->zoom = 1.0101010101;
 		all->check_zoom = '+';
 		all->zoom *= 0.99;
 		ft_memset(all->mlx.str, 0, HEIGHT * WIDTH * 4);
@@ -99,7 +99,7 @@ int		mouse(int key, int x, int y, void *param)
 	else if (key == 5)
 	{
 		if (all->check_zoom == '+')
-			all->zoom = 0.99;// parce que 0.99 / 0.99 = 1
+			all->zoom = 0.99;
 		all->check_zoom = '-';
 		all->zoom /= 0.99;
 		ft_memset(all->mlx.str, 0, HEIGHT * WIDTH * 4);

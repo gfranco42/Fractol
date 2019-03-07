@@ -6,7 +6,7 @@
 /*   By: gfranco <gfranco@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/04 17:36:51 by gfranco           #+#    #+#             */
-/*   Updated: 2019/03/06 14:10:32 by gfranco          ###   ########.fr       */
+/*   Updated: 2019/03/07 19:12:43 by gfranco          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,10 +28,10 @@ void		fail(int i)
 
 int		main(int ac, char **av)
 {
-	t_all		all;
-	t_pos		p;
-	t_pos		d;
-	t_pos		new;
+	t_all			all;
+	t_pos			p;
+	t_pos			d;
+	int				plan;
 
 	all.mlx.ptr = mlx_init();
 	all.mlx.win = mlx_new_window(all.mlx.ptr, WIDTH, HEIGHT, "FRACTOL GFRANCO");
@@ -44,9 +44,9 @@ int		main(int ac, char **av)
 	all.tmp.y = 0;
 	all.p = &p;
 	all.d = &d;
-	all.new = &new;
-	*all.plan = -1;
+	all.plan = &plan;
 	all.zoom = 1;
+
 
 	all.c.x = 0.3;
 	all.c.y = 0.3;

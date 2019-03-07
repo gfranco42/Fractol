@@ -6,17 +6,206 @@
 /*   By: gfranco <gfranco@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/07 15:40:30 by gfranco           #+#    #+#             */
-/*   Updated: 2019/03/06 18:45:37 by gfranco          ###   ########.fr       */
+/*   Updated: 2019/03/07 19:05:53 by gfranco          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fractol.h"
 
-void		calcul_first_z_galaxy(t_point *point, t_cplx *z, t_pos *p)
+/*void		*galaxy_th1(void *param)
 {
-	 z->x = p->x1 + point->x * (p->x2 - p->x1) / WIDTH;
-	 z->y = p->y1 + point->y * (p->y2 - p->y1) / HEIGHT;
-	 z->y = p->y2 - z->y + p->y1;
+	t_all	*all;
+	int		n;
+
+	all = (t_all*)param;
+	all->point.x = 0;
+	while (all->point.y < HEIGHT)
+	{
+		while (all->point.x < WIDTH)
+		{
+			calcul_first_z_galaxy(&all->point, &all->z, all->p);
+			n = 1;
+			while (all->z.x * all->z.x + all->z.y * all->z.y < 4 &&
+			 n++ < MAX_ITER)
+				all->z = calcul_z_galaxy(all->z, all->c, all->tmp);
+			if (n != MAX_ITER)
+				put_color_outside(all->point, n, (unsigned int*)all->mlx.str);
+				//put_color_inside(all->point, n, (unsigned int*)*//*all->mlx.str);
+			all->point.x += 4;
+		}
+		all->point.x = 0;
+		all->point.y++;
+	}
+	pthread_exit(NULL);
+}
+
+void		*galaxy_th2(void *param)
+{
+	t_all	*all;
+	int		n;
+
+	all = (t_all*)param;
+	all->point.x = 1;
+	while (all->point.y < HEIGHT)
+	{
+		while (all->point.x < WIDTH)
+		{
+			calcul_first_z_galaxy(&all->point, &all->z, all->p);
+			n = 1;
+			while (all->z.x * all->z.x + all->z.y * all->z.y < 4 &&
+			 n++ < MAX_ITER)
+				all->z = calcul_z_galaxy(all->z, all->c, all->tmp);
+			if (n != MAX_ITER)
+				put_color_outside(all->point, n, (unsigned int*)all->mlx.str);
+				//put_color_inside(all->point, n, unsigned int*)*//*all->mlx.str);
+			all->point.x += 4;
+		}
+		all->point.x = 1;
+		all->point.y++;
+	}
+	pthread_exit(NULL);
+}
+
+void		*galaxy_th3(void *param)
+{
+	t_all	*all;
+	int			n;
+
+	all = (t_all*)param;
+	all->point.x = 2;
+	while (all->point.y < HEIGHT)
+	{
+		while (all->point.x < WIDTH)
+		{
+			calcul_first_z_galaxy(&all->point, &all->z, all->p);
+			n = 1;
+			while (all->z.x * all->z.x + all->z.y * all->z.y < 4 &&
+			 n++ < MAX_ITER)
+				all->z = calcul_z_galaxy(all->z, all->c, all->tmp);
+			if (n != MAX_ITER)
+				put_color_outside(all->point, n, (unsigned int*)all->mlx.str);
+				//put_color_inside(all->point, n, (unsigned int*)*//*all->mlx.str);
+			all->point.x += 4;
+		}
+		all->point.x = 2;
+		all->point.y++;
+	}
+	pthread_exit(NULL);
+}*/
+void		*galaxy_th1(void *param)
+{
+	t_all	*all;
+
+	all = (t_all*)param;
+	all->point.y = 0;
+	while (all->point.y < HEIGHT)
+	{
+		all->point.x = 0;
+		while (all->point.x < WIDTH)
+		{
+	 		all->z.x =	all->p->x1 + all->point.x * (all->p->x2 - all->p->x1) / WIDTH;
+			all->z.y = all->p->y1 + all->point.y * (all->p->y2 - all->p->y1) / HEIGHT;
+			all->z.y = all->p->y2 - all->z.y + all->p->y1;
+			//calcul_first_z_galaxy(&all->point, &all->z, all->p);
+			calcul_galaxy(*all);
+			/*n = 1;
+			while (all->z.x * all->z.x + all->z.y * all->z.y < 4 &&
+			 n++ < MAX_ITER)
+				all->z = calcul_z_galaxy(all->z, all->c, all->tmp);
+			if (n != MAX_ITER)
+				put_color_outside(all->point, n, (unsigned int*)all->mlx.str);*/
+			all->point.x += 4;
+		}
+		all->point.y++;
+	}
+	pthread_exit(NULL);
+}
+
+void		*galaxy_th2(void *param)
+{
+	t_all	*all;
+
+	all = (t_all*)param;
+	all->point.y = 0;
+	while (all->point.y < HEIGHT)
+	{
+		all->point.x = 1;
+		while (all->point.x < WIDTH)
+		{
+	 		all->z.x =	all->p->x1 + all->point.x * (all->p->x2 - all->p->x1) / WIDTH;
+			all->z.y = all->p->y1 + all->point.y * (all->p->y2 - all->p->y1) / HEIGHT;
+			all->z.y = all->p->y2 - all->z.y + all->p->y1;
+			//calcul_first_z_galaxy(&all->point, &all->z, all->p);
+			calcul_galaxy(*all);
+			/*n = 1;
+			while (all->z.x * all->z.x + all->z.y * all->z.y < 4 &&
+			 n++ < MAX_ITER)
+				all->z = calcul_z_galaxy(all->z, all->c, all->tmp);
+			if (n != MAX_ITER)
+				put_color_outside(all->point, n, (unsigned int*)all->mlx.str);*/
+			all->point.x += 4;
+		}
+		all->point.y++;
+	}
+	pthread_exit(NULL);
+}
+
+void		*galaxy_th3(void *param)
+{
+	t_all	*all;
+
+	all = (t_all*)param;
+	all->point.y = 0;
+	while (all->point.y < HEIGHT)
+	{
+		all->point.x = 2;
+		while (all->point.x < WIDTH)
+		{
+	 		all->z.x =	all->p->x1 + all->point.x * (all->p->x2 - all->p->x1) / WIDTH;
+			all->z.y = all->p->y1 + all->point.y * (all->p->y2 - all->p->y1) / HEIGHT;
+			all->z.y = all->p->y2 - all->z.y + all->p->y1;
+			//calcul_first_z_galaxy(&all->point, &all->z, all->p);
+			calcul_galaxy(*all);
+			/*n = 1;
+			while (all->z.x * all->z.x + all->z.y * all->z.y < 4 &&
+			 n++ < MAX_ITER)
+				all->z = calcul_z_galaxy(all->z, all->c, all->tmp);
+			if (n != MAX_ITER)
+				put_color_outside(all->point, n, (unsigned int*)all->mlx.str);*/
+			all->point.x += 4;
+		}
+		all->point.y++;
+	}
+	pthread_exit(NULL);
+}
+
+void		*galaxy_th4(void *param)
+{
+	t_all	*all;
+
+	all = (t_all*)param;
+	all->point.y = 0;
+	while (all->point.y < HEIGHT)
+	{
+		all->point.x = 3;
+		while (all->point.x < WIDTH)
+		{
+	 		all->z.x =	all->p->x1 + all->point.x * (all->p->x2 - all->p->x1) / WIDTH;
+			all->z.y = all->p->y1 + all->point.y * (all->p->y2 - all->p->y1) / HEIGHT;
+			all->z.y = all->p->y2 - all->z.y + all->p->y1;
+			//calcul_first_z_galaxy(&all->point, &all->z, all->p);
+			calcul_galaxy(*all);
+			/*n = 1;
+			while (all->z.x * all->z.x + all->z.y * all->z.y < 4 &&
+			 n++ < MAX_ITER)
+				all->z = calcul_z_galaxy(all->z, all->c, all->tmp);
+			if (n != MAX_ITER)
+				put_color_outside(all->point, n, (unsigned int*)all->mlx.str);*/
+			all->point.x += 4;
+		}
+		all->point.y++;
+	}
+	pthread_exit(NULL);
 }
 
 void		galaxy(t_all all)

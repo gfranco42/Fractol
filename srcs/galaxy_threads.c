@@ -6,12 +6,12 @@
 /*   By: gfranco <gfranco@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/06 18:21:13 by gfranco           #+#    #+#             */
-/*   Updated: 2019/03/06 18:59:48 by gfranco          ###   ########.fr       */
+/*   Updated: 2019/03/07 15:27:03 by gfranco          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fractol.h"
-
+/*
 void		*galaxy_th1(void *param)
 {
 	t_all	*all;
@@ -51,11 +51,10 @@ void		*galaxy_th2(void *param)
 		{
 			calcul_first_z_galaxy(&all->point, &all->z, all->p);
 			n = 1;
-			while (all->z.x * all->z.x + all->z.y * all->z.y < 4 && n++ < MAX_ITER)
+			while (all->z.x * all->z.x + all->z.y * all->z.y < 4 &&
+			 n++ < MAX_ITER)
 				all->z = calcul_z_galaxy(all->z, all->c, all->tmp);
-			if (n == MAX_ITER)
-				put_color_inside(all->point, n, (unsigned int*)all->mlx.str);
-			else
+			if (n != MAX_ITER)
 				put_color_outside(all->point, n, (unsigned int*)all->mlx.str);
 			all->point.x += 4;
 		}
@@ -78,11 +77,10 @@ void		*galaxy_th3(void *param)
 		{
 			calcul_first_z_galaxy(&all->point, &all->z, all->p);
 			n = 1;
-			while (all->z.x * all->z.x + all->z.y * all->z.y < 4 && n++ < MAX_ITER)
+			while (all->z.x * all->z.x + all->z.y * all->z.y < 4 &&
+			 n++ < MAX_ITER)
 				all->z = calcul_z_galaxy(all->z, all->c, all->tmp);
-			if (n == MAX_ITER)
-				put_color_inside(all->point, n, (unsigned int*)all->mlx.str);
-			else
+			if (n != MAX_ITER)
 				put_color_outside(all->point, n, (unsigned int*)all->mlx.str);
 			all->point.x += 4;
 		}
@@ -105,11 +103,10 @@ void		*galaxy_th4(void *param)
 		{
 			calcul_first_z_galaxy(&all->point, &all->z, all->p);
 			n = 1;
-			while (all->z.x * all->z.x + all->z.y * all->z.y < 4 && n++ < MAX_ITER)
+			while (all->z.x * all->z.x + all->z.y * all->z.y < 4 &&
+			 n++ < MAX_ITER)
 				all->z = calcul_z_galaxy(all->z, all->c, all->tmp);
-			if (n == MAX_ITER)
-				put_color_inside(all->point, n, (unsigned int*)all->mlx.str);
-			else
+			if (n != MAX_ITER)
 				put_color_outside(all->point, n, (unsigned int*)all->mlx.str);
 			all->point.x += 4;
 		}
@@ -117,4 +114,4 @@ void		*galaxy_th4(void *param)
 		all->point.y++;
 	}
 	pthread_exit(NULL);
-}
+}*/
