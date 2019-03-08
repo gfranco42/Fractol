@@ -6,7 +6,7 @@
 /*   By: gfranco <gfranco@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/07 15:40:30 by gfranco           #+#    #+#             */
-/*   Updated: 2019/03/07 16:55:30 by gfranco          ###   ########.fr       */
+/*   Updated: 2019/03/08 11:58:42 by gfranco          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,25 +15,24 @@
 void		*mandelbrot_th1(void *param)
 {
 	t_all	*all;
-	int		n;
 
 	all = (t_all*)param;
-	all->point.x = 0;
+	all->point.y = 0;
 	while (all->point.y < HEIGHT)
 	{
+		all->point.x = 0;
 		while (all->point.x < WIDTH)
 		{
-			calcul_c(&all->c, &all->point, all->p);
+			all->c.x = all->p->x1 + all->point.x * (all->p->x2 - all->p->x1)
+			/ WIDTH;
+			all->c.y = all->p->y1 + all->point.y * (all->p->y2 - all->p->y1)
+			/ HEIGHT;
+			all->c.y = all->p->y2 - all->c.y + all->p->y1;
 			all->z.x = 0;
 			all->z.y = 0;
-			n = 0;
-			while (all->z.x * all->z.x + all->z.y * all->z.y < 4 && n++ < MAX_ITER)
-				calcul_z(&all->z, &all->c, &all->tmp);
-			if (n != MAX_ITER)
-				put_color_outside(all->point, n, (unsigned int*)all->mlx.str);
+			calcul_mandelbrot(*all, (unsigned int*)all->mlx.str);
 			all->point.x += 4;
 		}
-		all->point.x = 0;
 		all->point.y++;
 	}
 	pthread_exit(NULL);
@@ -42,25 +41,24 @@ void		*mandelbrot_th1(void *param)
 void		*mandelbrot_th2(void *param)
 {
 	t_all	*all;
-	int		n;
 
 	all = (t_all*)param;
-	all->point.x = 1;
+	all->point.y = 0;
 	while (all->point.y < HEIGHT)
 	{
+		all->point.x = 1;
 		while (all->point.x < WIDTH)
 		{
-			calcul_c(&all->c, &all->point, all->p);
+			all->c.x = all->p->x1 + all->point.x * (all->p->x2 - all->p->x1)
+			/ WIDTH;
+			all->c.y = all->p->y1 + all->point.y * (all->p->y2 - all->p->y1)
+			/ HEIGHT;
+			all->c.y = all->p->y2 - all->c.y + all->p->y1;
 			all->z.x = 0;
 			all->z.y = 0;
-			n = 0;
-			while (all->z.x * all->z.x + all->z.y * all->z.y < 4 && n++ < MAX_ITER)
-				calcul_z(&all->z, &all->c, &all->tmp);
-			if (n != MAX_ITER)
-				put_color_outside(all->point, n, (unsigned int*)all->mlx.str);
+			calcul_mandelbrot(*all, (unsigned int*)all->mlx.str);
 			all->point.x += 4;
 		}
-		all->point.x = 1;
 		all->point.y++;
 	}
 	pthread_exit(NULL);
@@ -69,25 +67,24 @@ void		*mandelbrot_th2(void *param)
 void		*mandelbrot_th3(void *param)
 {
 	t_all	*all;
-	int		n;
 
 	all = (t_all*)param;
-	all->point.x = 2;
+	all->point.y = 0;
 	while (all->point.y < HEIGHT)
 	{
+		all->point.x = 2;
 		while (all->point.x < WIDTH)
 		{
-			calcul_c(&all->c, &all->point, all->p);
+			all->c.x = all->p->x1 + all->point.x * (all->p->x2 - all->p->x1)
+			/ WIDTH;
+			all->c.y = all->p->y1 + all->point.y * (all->p->y2 - all->p->y1)
+			/ HEIGHT;
+			all->c.y = all->p->y2 - all->c.y + all->p->y1;
 			all->z.x = 0;
 			all->z.y = 0;
-			n = 0;
-			while (all->z.x * all->z.x + all->z.y * all->z.y < 4 && n++ < MAX_ITER)
-				calcul_z(&all->z, &all->c, &all->tmp);
-			if (n != MAX_ITER)
-				put_color_outside(all->point, n, (unsigned int*)all->mlx.str);
+			calcul_mandelbrot(*all, (unsigned int*)all->mlx.str);
 			all->point.x += 4;
 		}
-		all->point.x = 2;
 		all->point.y++;
 	}
 	pthread_exit(NULL);
@@ -96,25 +93,24 @@ void		*mandelbrot_th3(void *param)
 void		*mandelbrot_th4(void *param)
 {
 	t_all	*all;
-	int		n;
 
 	all = (t_all*)param;
-	all->point.x = 3;
+	all->point.y = 0;
 	while (all->point.y < HEIGHT)
 	{
+		all->point.x = 3;
 		while (all->point.x < WIDTH)
 		{
-			calcul_c(&all->c, &all->point, all->p);
+			all->c.x = all->p->x1 + all->point.x * (all->p->x2 - all->p->x1)
+			/ WIDTH;
+			all->c.y = all->p->y1 + all->point.y * (all->p->y2 - all->p->y1)
+			/ HEIGHT;
+			all->c.y = all->p->y2 - all->c.y + all->p->y1;
 			all->z.x = 0;
 			all->z.y = 0;
-			n = 0;
-			while (all->z.x * all->z.x + all->z.y * all->z.y < 4 && n++ < MAX_ITER)
-				calcul_z(&all->z, &all->c, &all->tmp);
-			if (n != MAX_ITER)
-				put_color_outside(all->point, n, (unsigned int*)all->mlx.str);
+			calcul_mandelbrot(*all, (unsigned int*)all->mlx.str);
 			all->point.x += 4;
 		}
-		all->point.x = 3;
 		all->point.y++;
 	}
 	pthread_exit(NULL);

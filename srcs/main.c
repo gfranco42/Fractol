@@ -6,11 +6,21 @@
 /*   By: gfranco <gfranco@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/04 17:36:51 by gfranco           #+#    #+#             */
-/*   Updated: 2019/03/07 19:12:43 by gfranco          ###   ########.fr       */
+/*   Updated: 2019/03/08 18:48:36 by gfranco          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fractol.h"
+
+void	which_fractal(t_all all, int plan)
+{
+	if (plan == 1)
+		mandelbrot(all);
+	else if (plan == 2)
+		julia(all);
+	else if (plan == 3)
+		brain(all);
+}
 
 void		fail(int i)
 {
@@ -26,37 +36,39 @@ void		fail(int i)
 	}
 }
 
-int		main(int ac, char **av)
+void	init_v(t_all *all)
 {
-	t_all			all;
 	t_pos			p;
 	t_pos			d;
 	int				plan;
 
-	all.mlx.ptr = mlx_init();
-	all.mlx.win = mlx_new_window(all.mlx.ptr, WIDTH, HEIGHT, "FRACTOL GFRANCO");
-	all.mlx.img = mlx_new_image(all.mlx.ptr, WIDTH, HEIGHT);
-	all.mlx.str = mlx_get_data_addr(all.mlx.img, &(all.mlx.bpp), &(all.mlx.s_l), &(all.mlx.endian));
+	all->point.x = 0;
+	all->point.y = 0;
+	all->p = &p;
+	all->d = &d;
+	all->plan = &plan;
+	all->zoom = 1;
+	all->mouse.x = 0.4;
+	all->mouse.y = 0.4;
+	all->color = WHITE;
+	all->k = 'y';
+	all->c.x = 0.3;
+	all->c.y = 0.3;
+}
 
-	all.point.x = 0;
-	all.point.y = 0;
-	all.tmp.x = 0;
-	all.tmp.y = 0;
-	all.p = &p;
-	all.d = &d;
-	all.plan = &plan;
-	all.zoom = 1;
+int		main(int ac, char **av)
+{
+	t_all			all;
 
-
-	all.c.x = 0.3;
-	all.c.y = 0.3;
 	if (ac != 2)
 	{
-		write(1, "usage:\n./fractol  Mandelbrot\n\t   Julia\n\t   Galaxy\n",
+		write(1, "usage:\n./fractol  Mandelbrot\n\t   Julia\n\t   Brain\n",
 		 50);
 		exit(0);
 	}
-	parsing(av[1], all);
+	init_v(&all);
+	parsing(av[1], &all);
+	system("afplay ./srcs/BOHEMIAN_R &");
 	mlx_hook(all.mlx.win, KEYPRESS, KEYPRESSMASK, key, &all);
 	mlx_hook(all.mlx.win, 6, 0, mouse_julia, &all);
 	mlx_mouse_hook(all.mlx.win, mouse, &all);

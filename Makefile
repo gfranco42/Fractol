@@ -6,7 +6,7 @@
 #    By: gfranco <gfranco@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/10/09 13:44:17 by mverdier          #+#    #+#              #
-#    Updated: 2019/03/07 15:27:27 by gfranco          ###   ########.fr        #
+#    Updated: 2019/03/08 18:16:03 by gfranco          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,9 +30,9 @@ INCDIR =	./includes
 
 OBJDIR =	./objs
 
-SRC =		main.c calcul_complex.c	put_color.c event.c mandelbrot.c mthread.c \
-			zoom.c julia.c galaxy.c parse.c galaxy_threads.c julia_threads.c   \
-			mandelbrot_threads.c set_plan.c \
+SRC =		main.c calcul_complex.c	put_color.c  mandelbrot.c mthread.c \
+			zoom.c julia.c brain.c parse.c galaxy_threads.c tools.c     \
+			mandelbrot_threads.c event_key.c event_mouse.c   \
 
 INC =		fractol.h
 
